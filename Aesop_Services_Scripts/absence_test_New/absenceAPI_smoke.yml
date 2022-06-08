@@ -1,0 +1,27 @@
+execution:
+#- executor: jmeter
+- concurrency: 10
+  ramp-up: 10s
+  hold-for: 1m
+  scenario: Frontline_Central_API_Forms
+- concurrency: 1
+  ramp-up: 1s
+  hold-for: 1m
+  scenario: Frontline_Central_API_Employee
+
+scenarios:
+  Frontline_Central_API_Forms:
+    script: Frontline_Central_API_Forms.jmx
+  Frontline_Central_API_Employee:
+    script: Frontline_Central_API_Employee.jmx
+
+modules:
+  console:
+    disable: true # disable runtime console reporter
+
+reporting:
+#- module: console
+- module: passfail
+  criteria:
+  - avg-rt>10s for 30s, stop as failed
+  - fail>50% for 20s, stop as failed
