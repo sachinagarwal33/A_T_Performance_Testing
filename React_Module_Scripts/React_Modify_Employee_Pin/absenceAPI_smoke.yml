@@ -1,0 +1,21 @@
+execution:
+#- executor: jmeter
+- concurrency: 50
+  ramp-up: 50s
+  iterations: 1429
+  scenario: SC01_Modify_Employee_Pin
+
+scenarios:
+  SC01_Modify_Employee_Pin:
+    script: SC01_Modify_Employee_Pin.jmx
+
+modules:
+  console:
+    disable: true # disable runtime console reporter
+
+reporting:
+#- module: console
+- module: passfail
+  criteria:
+  - avg-rt>10s for 30s, stop as failed
+  - fail>50% for 20s, stop as failed

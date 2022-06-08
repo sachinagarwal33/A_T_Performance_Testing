@@ -1,0 +1,21 @@
+execution:
+#- executor: jmeter
+- concurrency: 100
+  ramp-up: 100s
+  hold-for: 50m
+  scenario: FC_Absence_Absence_Approver_Reports_08_Oct_2021
+
+scenarios:
+  FC_Absence_Absence_Approver_Reports_08_Oct_2021:
+    script: FC_Absence_Absence_Approver_Reports_08_Oct_2021.jmx
+
+modules:
+  console:
+    disable: true # disable runtime console reporter
+
+reporting:
+#- module: console
+- module: passfail
+  criteria:
+  - avg-rt>10s for 30s, stop as failed
+  - fail>50% for 20s, stop as failed

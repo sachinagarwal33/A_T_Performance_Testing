@@ -1,0 +1,21 @@
+execution:
+#- executor: jmeter
+- concurrency: 100
+  ramp-up: 100s
+  hold-for: 50m
+  scenario: SC01_React_Permissions_Module
+
+scenarios:
+  SC01_React_Permissions_Module:
+    script: SC01_React_Permissions_Module.jmx
+
+modules:
+  console:
+    disable: true # disable runtime console reporter
+
+reporting:
+#- module: console
+- module: passfail
+  criteria:
+  - avg-rt>10s for 30s, stop as failed
+  - fail>50% for 20s, stop as failed
