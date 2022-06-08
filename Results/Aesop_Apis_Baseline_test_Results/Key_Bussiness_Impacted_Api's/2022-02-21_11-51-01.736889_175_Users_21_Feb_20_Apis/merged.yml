@@ -1,0 +1,30 @@
+---
+execution:
+- concurrency: 100
+  hold-for: 60m
+  ramp-up: 100s
+  scenario: SC01_Top_5_Apis
+- concurrency: 50
+  hold-for: 60m
+  ramp-up: 50s
+  scenario: SC02_Next_10_Apis
+- concurrency: 25
+  hold-for: 60m
+  ramp-up: 25s
+  scenario: SC03_Next_5_Apis
+modules:
+  console:
+    disable: true
+reporting:
+- criteria:
+  - avg-rt>10s for 30s, stop as failed
+  - fail>50% for 20s, stop as failed
+  module: passfail
+scenarios:
+  SC01_Top_5_Apis:
+    script: SC01_Top_5_Apis.jmx
+  SC02_Next_10_Apis:
+    script: SC02_Next_10_Apis.jmx
+  SC03_Next_5_Apis:
+    script: SC03_Next_5_Apis.jmx
+

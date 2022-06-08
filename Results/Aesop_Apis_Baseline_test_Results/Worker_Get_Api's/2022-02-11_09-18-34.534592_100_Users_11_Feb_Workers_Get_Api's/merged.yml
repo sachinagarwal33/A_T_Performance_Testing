@@ -1,0 +1,18 @@
+---
+execution:
+- concurrency: 100
+  hold-for: 60m
+  ramp-up: 100s
+  scenario: SC02_Worker_WorkerTypes_Get_Apis
+modules:
+  console:
+    disable: true
+reporting:
+- criteria:
+  - avg-rt>10s for 30s, stop as failed
+  - fail>50% for 20s, stop as failed
+  module: passfail
+scenarios:
+  SC02_Worker_WorkerTypes_Get_Apis:
+    script: SC02_Worker_WorkerTypes_Get_Apis.jmx
+

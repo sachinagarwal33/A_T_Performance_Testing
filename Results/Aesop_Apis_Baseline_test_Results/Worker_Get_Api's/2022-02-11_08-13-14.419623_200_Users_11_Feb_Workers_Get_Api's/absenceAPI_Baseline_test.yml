@@ -1,0 +1,21 @@
+execution:
+#- executor: jmeter
+- concurrency: 200
+  ramp-up: 200s
+  hold-for: 60m
+  scenario: SC02_Worker_WorkerTypes_Get_Apis
+ 
+scenarios:
+  SC02_Worker_WorkerTypes_Get_Apis:
+    script: SC02_Worker_WorkerTypes_Get_Apis.jmx
+
+modules:
+  console:
+    disable: true # disable runtime console reporter
+
+reporting:
+#- module: console
+- module: passfail
+  criteria:
+  - avg-rt>10s for 30s, stop as failed
+  - fail>50% for 20s, stop as failed

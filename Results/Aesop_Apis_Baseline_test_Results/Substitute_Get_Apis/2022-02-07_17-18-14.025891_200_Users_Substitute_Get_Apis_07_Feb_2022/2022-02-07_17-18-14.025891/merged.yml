@@ -1,0 +1,18 @@
+---
+execution:
+- concurrency: 200
+  hold-for: 60m
+  ramp-up: 200s
+  scenario: SC01_Substitute_get_apis
+modules:
+  console:
+    disable: true
+reporting:
+- criteria:
+  - avg-rt>10s for 30s, stop as failed
+  - fail>50% for 20s, stop as failed
+  module: passfail
+scenarios:
+  SC01_Substitute_get_apis:
+    script: SC01_Substitute_get_apis.jmx
+

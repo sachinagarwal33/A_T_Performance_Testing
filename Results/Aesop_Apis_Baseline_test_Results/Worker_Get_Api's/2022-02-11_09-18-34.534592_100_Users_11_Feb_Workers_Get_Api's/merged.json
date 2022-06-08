@@ -1,0 +1,29 @@
+{
+ "execution": [
+  {
+   "concurrency": 100,
+   "ramp-up": "100s",
+   "hold-for": "60m",
+   "scenario": "SC02_Worker_WorkerTypes_Get_Apis"
+  }
+ ],
+ "scenarios": {
+  "SC02_Worker_WorkerTypes_Get_Apis": {
+   "script": "SC02_Worker_WorkerTypes_Get_Apis.jmx"
+  }
+ },
+ "modules": {
+  "console": {
+   "disable": true
+  }
+ },
+ "reporting": [
+  {
+   "module": "passfail",
+   "criteria": [
+    "avg-rt>10s for 30s, stop as failed",
+    "fail>50% for 20s, stop as failed"
+   ]
+  }
+ ]
+}

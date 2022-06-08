@@ -1,0 +1,29 @@
+{
+ "execution": [
+  {
+   "concurrency": 200,
+   "ramp-up": "200s",
+   "hold-for": "60m",
+   "scenario": "SC01_Substitute_get_apis"
+  }
+ ],
+ "scenarios": {
+  "SC01_Substitute_get_apis": {
+   "script": "SC01_Substitute_get_apis.jmx"
+  }
+ },
+ "modules": {
+  "console": {
+   "disable": true
+  }
+ },
+ "reporting": [
+  {
+   "module": "passfail",
+   "criteria": [
+    "avg-rt>10s for 30s, stop as failed",
+    "fail>50% for 20s, stop as failed"
+   ]
+  }
+ ]
+}
